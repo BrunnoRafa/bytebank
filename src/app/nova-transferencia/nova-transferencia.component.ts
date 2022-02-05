@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { Transferencia } from "../models/transferencia.model";
+import { TransferenciaService } from "../services/transferencia.service";
 
 
 @Component({
@@ -10,11 +13,21 @@ export class NovaTransferenciaComponent {
   valor: number;
   destino: number;
 
-  @Output() aoTransferir = new EventEmitter<any>();
+  constructor(
+    private transferenciaService: TransferenciaService,
+    private router: Router) { }
 
   transferir() {
-    const transferencia = { valor: this.valor, destino: this.destino };
-    this.aoTransferir.emit(transferencia);
+    const transferencia: Transferencia = { valor: this.valor, destino: this.destino };
+
+    this.transferenciaService.adicionar(transferencia)
+      .subscribe(resultado => {
+        console.log(resultado);
+        this.limparCampos();
+        this.router.navigateByUrl('extrato');
+      },
+        (error) => console.error(error)
+      );
   }
 
   limparCampos() {
