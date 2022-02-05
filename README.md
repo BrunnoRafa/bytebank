@@ -4,6 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Nodejs 14.17.1
 
+## json-server
+
+Abrir um terminal para executar o script com o comando npm run json-server que ira subir o service fake de uma API rest os dados ficaram disponiveis em http://localhost:3000/transferencias
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
